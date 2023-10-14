@@ -25,8 +25,13 @@ const NavBar = (props)=>{
 }
 
 NavBar.propTypes = {
-    title : PropTypes.string,
+    title : PropTypes.string.isRequired,
     aboutText : PropTypes.string
+}
+
+NavBar.defaultProps = {
+    title: 'Set Title here',
+    aboutText: 'Set some About text here'
 }
 
 export default NavBar;
