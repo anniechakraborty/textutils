@@ -7,11 +7,53 @@ export default function TextForm(props) {
     setText(newText);
   }
   const convertToLowerCase = () =>{
-    let newText = text.toUpperCase();
+    let newText = text.toLowerCase();
     setText(newText);
   }
+  const toggleCase = () =>{
+    let newText = '';
+    for (let index = 0; index < text.length; index++) {
+      let element = text[index].charCodeAt(0);
+      // console.log(element);
+      if(element >= 65 && element <= 90) {
+        element += 32
+      }
+      else if (element >= 97 && element <= 122) {
+        element -= 32
+      }
+      newText += String.fromCharCode(element);
+    }
+    // console.log(newText);
+    setText(newText);
+  }
+  /**
+   * if input is : hey girl you are great! let's get coffee sometime. i am hungry.       what is wrong?
+   * ouput is : Hey girl you are great! Let's get coffee sometime. I am hungry. What is wrong?
+   */
+  const convertToTitleCase = () => {
+    let trimmedText = text.trim();
+    trimmedText = trimmedText[0].toUpperCase() + trimmedText.substring(1); // capitalised first letter
+    for (let i = 0; i < trimmedText.length; i++) {
+      let element = trimmedText[i].charCodeAt(0);
+      if(element == 33 || element == 63 || element == 46){
+        // 33 is !
+        // 46 is .
+        // 63 is ?
+        // split text into two parts, trim the second part and capitalise it's first letter
+        let first_part = trimmedText.substring(0, i+1);
+        let second_part = trimmedText.substring(i+2);
+        second_part = second_part.trim();
+        if(second_part != ''){
+          second_part = ' ' + second_part[0].toUpperCase() + second_part.substring(1);
+        }
+        trimmedText = first_part + second_part;
+      }
+    }
+    setText(trimmedText);
+  }
+
   const onChangeClick = (event) => {
-    console.log("event : ", event);
+    // console.log("event : ", event);
     setText(event.target.value);
   }
   return (
@@ -21,8 +63,10 @@ export default function TextForm(props) {
         <div className="mb-3">
           <textarea id="text" className='form-control' value={text} onChange={onChangeClick} cols="25" rows="8"></textarea>
         </div>
-        <button className='btn btn-primary' onClick={convertToUpperCase}>Convert to Upper Case</button>
-        <button className='btn btn-primary mx-2' onClick={convertToLowerCase}>Convert to Lower Case</button>
+        <button className='btn btn-outline-primary' onClick={convertToUpperCase}>Upper Case</button>
+        <button className='btn btn-primary mx-2' onClick={convertToLowerCase}>Lower Case</button>
+        <button className='btn btn-outline-primary' onClick={toggleCase}>Toggle Case</button>
+        <button className='btn btn-primary mx-2' onClick={convertToTitleCase}>Title Case</button>
       </div>
       <div className='container my-2'>
         {/* <h2>Text Summary</h2> */}
