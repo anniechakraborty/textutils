@@ -67,6 +67,7 @@ export default function TextForm(props) {
         <button className='btn btn-primary mx-2' onClick={convertToLowerCase}>Lower Case</button>
         <button className='btn btn-outline-primary' onClick={toggleCase}>Toggle Case</button>
         <button className='btn btn-primary mx-2' onClick={convertToTitleCase}>Title Case</button>
+        {/* <button className='btn btn-success mx-2' onClick={convertToTitleCase}>Copy to Clipboard</button>  -- Add this feature later */}
       </div>
       <div className='container my-2'>
         {/* <h2>Text Summary</h2> */}
