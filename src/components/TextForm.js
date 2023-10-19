@@ -30,9 +30,9 @@ export default function TextForm(props) {
    * if input is : hey girl you are great! let's get coffee sometime. i am hungry.       what is wrong?
    * ouput is : Hey girl you are great! Let's get coffee sometime. I am hungry. What is wrong?
    */
-  const convertToTitleCase = () => {
+  const convertToSentenceCase = () => {
     let trimmedText = text.trim();
-    trimmedText = trimmedText[0].toUpperCase() + trimmedText.substring(1); // capitalised first letter
+    trimmedText = trimmedText[0].toUpperCase() + trimmedText.substring(1).toLowerCase(); // capitalised first letter
     for (let i = 0; i < trimmedText.length; i++) {
       let element = trimmedText[i].charCodeAt(0);
       if(element == 33 || element == 63 || element == 46){
@@ -44,7 +44,7 @@ export default function TextForm(props) {
         let second_part = trimmedText.substring(i+2);
         second_part = second_part.trim();
         if(second_part != ''){
-          second_part = ' ' + second_part[0].toUpperCase() + second_part.substring(1);
+          second_part = ' ' + second_part[0].toUpperCase() + second_part.substring(1).toLowerCase();
         }
         trimmedText = first_part + second_part;
       }
@@ -66,8 +66,8 @@ export default function TextForm(props) {
         <button className='btn btn-outline-primary' onClick={convertToUpperCase}>Upper Case</button>
         <button className='btn btn-primary mx-2' onClick={convertToLowerCase}>Lower Case</button>
         <button className='btn btn-outline-primary' onClick={toggleCase}>Toggle Case</button>
-        <button className='btn btn-primary mx-2' onClick={convertToTitleCase}>Title Case</button>
-        {/* <button className='btn btn-success mx-2' onClick={convertToTitleCase}>Copy to Clipboard</button>  -- Add this feature later */}
+        <button className='btn btn-primary mx-2' onClick={convertToSentenceCase}>Sentence Case</button>
+        {/* <button className='btn btn-success mx-2' onClick={convertToSentenceCase}>Copy to Clipboard</button>  -- Add this feature later */}
       </div>
       <div className='container my-2'>
         {/* <h2>Text Summary</h2> */}
