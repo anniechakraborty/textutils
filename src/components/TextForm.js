@@ -35,7 +35,7 @@ export default function TextForm(props) {
     trimmedText = trimmedText[0].toUpperCase() + trimmedText.substring(1).toLowerCase(); // capitalised first letter
     for (let i = 0; i < trimmedText.length; i++) {
       let element = trimmedText[i].charCodeAt(0);
-      if(element == 33 || element == 63 || element == 46){
+      if(element === 33 || element === 63 || element === 46){
         // 33 is !
         // 46 is .
         // 63 is ?
@@ -43,13 +43,19 @@ export default function TextForm(props) {
         let first_part = trimmedText.substring(0, i+1);
         let second_part = trimmedText.substring(i+2);
         second_part = second_part.trim();
-        if(second_part != ''){
+        if(second_part !== ''){
           second_part = ' ' + second_part[0].toUpperCase() + second_part.substring(1).toLowerCase();
         }
         trimmedText = first_part + second_part;
       }
     }
     setText(trimmedText);
+  }
+
+  const copyText = () => {
+    var textBoxValue = document.getElementById("text");
+    textBoxValue.select();
+    navigator.clipboard.writeText(textBoxValue);
   }
 
   const clearText = () => {
@@ -67,12 +73,18 @@ export default function TextForm(props) {
         <div className="mb-3">
           <textarea id="text" className='form-control' value={text} onChange={onChangeClick} cols="25" rows="8"></textarea>
         </div>
-        <button className='btn btn-outline-primary' onClick={convertToUpperCase}>Upper Case</button>
-        <button className='btn btn-primary mx-2' onClick={convertToLowerCase}>Lower Case</button>
-        <button className='btn btn-outline-primary' onClick={toggleCase}>Toggle Case</button>
-        <button className='btn btn-primary mx-2' onClick={convertToSentenceCase}>Sentence Case</button>
-        <button className='btn btn-danger mx-2' onClick={clearText}>Clear Text</button>
-        {/* <button className='btn btn-success mx-2' onClick={convertToSentenceCase}>Copy to Clipboard</button>  -- Add this feature later */}
+        <div className="functionalities">
+          <div className="text-functionalities">
+            <button className='btn btn-outline-primary' onClick={convertToUpperCase}>Upper Case</button>
+            <button className='btn btn-primary mx-2' onClick={convertToLowerCase}>Lower Case</button>
+            <button className='btn btn-outline-primary' onClick={toggleCase}>Toggle Case</button>
+            <button className='btn btn-primary mx-2' onClick={convertToSentenceCase}>Sentence Case</button>
+          </div>
+          <div className="system-functionalities">
+            <button className='btn btn-success mx-2' onClick={copyText}>Copy to Clipboard</button>
+            <button className='btn btn-danger' onClick={clearText}>Clear Text</button>
+          </div>
+        </div>
       </div>
       <div className='container my-2'>
         {/* <h2>Text Summary</h2> */}
@@ -80,8 +92,8 @@ export default function TextForm(props) {
         <p>{text}</p>
         <h4>Text Analysis</h4>
         <ul>
-          <li>{text == "" ? 0 : text.split(' ').length} words and {text.length} characters</li>
-          <li>{text == "" ? 0 : text.split(' ').length * 0.008} minutes to read</li>
+          <li>{text === "" ? 0 : text.split(' ').length} words and {text.length} characters</li>
+          <li>{text === "" ? 0 : text.split(' ').length * 0.008} minutes to read</li>
         </ul>
       </div>
     </>
