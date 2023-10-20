@@ -52,6 +52,10 @@ export default function TextForm(props) {
     setText(trimmedText);
   }
 
+  const clearText = () => {
+    setText('');
+  }
+
   const onChangeClick = (event) => {
     // console.log("event : ", event);
     setText(event.target.value);
@@ -67,6 +71,7 @@ export default function TextForm(props) {
         <button className='btn btn-primary mx-2' onClick={convertToLowerCase}>Lower Case</button>
         <button className='btn btn-outline-primary' onClick={toggleCase}>Toggle Case</button>
         <button className='btn btn-primary mx-2' onClick={convertToSentenceCase}>Sentence Case</button>
+        <button className='btn btn-danger mx-2' onClick={clearText}>Clear Text</button>
         {/* <button className='btn btn-success mx-2' onClick={convertToSentenceCase}>Copy to Clipboard</button>  -- Add this feature later */}
       </div>
       <div className='container my-2'>
