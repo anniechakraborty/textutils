@@ -54,8 +54,9 @@ export default function TextForm(props) {
 
   const copyText = () => {
     var textBoxValue = document.getElementById("text");
+    console.log("Text box value : ", textBoxValue);
     textBoxValue.select();
-    navigator.clipboard.writeText(textBoxValue);
+    navigator.clipboard.writeText(textBoxValue.value);
   }
 
   const clearText = () => {
@@ -69,15 +70,18 @@ export default function TextForm(props) {
   return (
     <>
       <div className='container'>
-        <h1>{props.heading}</h1>
+        <h1 className={`text-${props.mode === 'light' ? 'dark' : 'light'}`}>{props.heading}</h1>
         <div className="mb-3">
-          <textarea id="text" className='form-control' value={text} onChange={onChangeClick} cols="25" rows="8"></textarea>
+          <textarea id="text" className='form-control' value={text} onChange={onChangeClick} cols="25" rows="8" style={{
+            backgroundColor : props.mode === 'light' ? 'white' : '#333',
+            color : props.mode === 'light' ? '#333' : 'white'
+          }}></textarea>
         </div>
         <div className="functionalities">
           <div className="text-functionalities">
-            <button className='btn btn-outline-primary' onClick={convertToUpperCase}>Upper Case</button>
+            <button className='btn btn-primary' onClick={convertToUpperCase}>Upper Case</button>
             <button className='btn btn-primary mx-2' onClick={convertToLowerCase}>Lower Case</button>
-            <button className='btn btn-outline-primary' onClick={toggleCase}>Toggle Case</button>
+            <button className='btn btn-primary' onClick={toggleCase}>Toggle Case</button>
             <button className='btn btn-primary mx-2' onClick={convertToSentenceCase}>Sentence Case</button>
           </div>
           <div className="system-functionalities">
@@ -88,10 +92,10 @@ export default function TextForm(props) {
       </div>
       <div className='container my-2'>
         {/* <h2>Text Summary</h2> */}
-        <h4>Text Preview</h4>
-        <p>{text}</p>
-        <h4>Text Analysis</h4>
-        <ul>
+        <h4 className={`text-${props.mode === 'light' ? 'dark' : 'light'}`}>Text Preview</h4>
+        <p className={`text-${props.mode === 'light' ? 'dark' : 'light'}`}>{text === '' ? 'Enter your text to preview it here...' : text}</p>
+        <h4 className={`text-${props.mode === 'light' ? 'dark' : 'light'}`}>Text Analysis</h4>
+        <ul className={`text-${props.mode === 'light' ? 'dark' : 'light'}`}>
           <li>{text === "" ? 0 : text.split(' ').length} words and {text.length} characters</li>
           <li>{text === "" ? 0 : text.split(' ').length * 0.008} minutes to read</li>
         </ul>
