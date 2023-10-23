@@ -5,10 +5,12 @@ export default function TextForm(props) {
   const convertToUpperCase = () =>{
     let newText = text.toUpperCase();
     setText(newText);
+    props.showAlert("Text converted to upper case!", "success");
   }
   const convertToLowerCase = () =>{
     let newText = text.toLowerCase();
     setText(newText);
+    props.showAlert("Text converted to lower case!", "success");
   }
   const toggleCase = () =>{
     let newText = '';
@@ -25,6 +27,7 @@ export default function TextForm(props) {
     }
     // console.log(newText);
     setText(newText);
+    props.showAlert("Text case toggled!", "success");
   }
   /**
    * if input is : hey girl you are great! let's get coffee sometime. i am hungry.       what is wrong?
@@ -50,6 +53,7 @@ export default function TextForm(props) {
       }
     }
     setText(trimmedText);
+    props.showAlert("Text converted to Sentence Case!", "success");
   }
 
   const copyText = () => {
@@ -57,10 +61,12 @@ export default function TextForm(props) {
     console.log("Text box value : ", textBoxValue);
     textBoxValue.select();
     navigator.clipboard.writeText(textBoxValue.value);
+    props.showAlert("Text copied!", "success");
   }
 
   const clearText = () => {
     setText('');
+    props.showAlert("Text cleared!", "success");
   }
 
   const onChangeClick = (event) => {
