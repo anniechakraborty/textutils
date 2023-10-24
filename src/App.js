@@ -39,12 +39,12 @@ function App() {
   return (
     <>
     <BrowserRouter>
-      <NavBar title={"TextUtils"} aboutText="About Us" mode={darkMode} toggleMode={toggleMode}/>
+      <NavBar title={"TextUtils"} aboutText="About" mode={darkMode} toggleMode={toggleMode} />
       <Alert alert={alert}/>
       <div className="container my-4">
       <Routes>
-        <Route path="/about" element={<About />} />
-        <Route path="/" element={
+        <Route exact path="/about" element={<About mode={darkMode} />} />
+        <Route exact path="/" element={
           <TextForm heading="Enter text below to analyse" mode={darkMode} showAlert={showAlert} />
         }/>
       </Routes>
