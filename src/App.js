@@ -43,6 +43,13 @@ function App() {
       <Alert alert={alert}/>
       <div className="container my-4">
       <Routes>
+        {/* 
+          React does partial matching so we should always include the word exact on the path to enforce exact path match.
+          An example of partial path matching is :
+          /users --> loads Component 1
+          /users/home --> loads Component 2
+          In case of partial path matching, react will load component 1 even if the path is /users/home because the first half is a match
+         */}
         <Route exact path="/about" element={<About mode={darkMode} />} />
         <Route exact path="/" element={
           <TextForm heading="Enter text below to analyse" mode={darkMode} showAlert={showAlert} />
