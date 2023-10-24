@@ -5,3 +5,11 @@
   align-items: center;
   margin-bottom: 1em;
 }
+
+.text-summary > p, .text-summary > ul > li{
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.about-textutils > p{
+  font-family: 'Courier New', Courier, monospace;
+}

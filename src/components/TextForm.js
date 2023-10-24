@@ -96,7 +96,7 @@ export default function TextForm(props) {
           </div>
         </div>
       </div>
-      <div className='container my-2'>
+      <div className='container my-2 text-summary'>
         {/* <h2>Text Summary</h2> */}
         <h4 className={`text-${props.mode === 'light' ? 'dark' : 'light'}`}>Text Preview</h4>
         <p className={`text-${props.mode === 'light' ? 'dark' : 'light'}`}>{text === '' ? 'Enter your text to preview it here...' : text}</p>
