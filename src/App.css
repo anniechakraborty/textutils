@@ -7,9 +7,24 @@
 }
 
 .text-summary > p, .text-summary > ul > li{
-  font-family: 'Courier New', Courier, monospace;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .about-textutils > p{
-  font-family: 'Courier New', Courier, monospace;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  text-align: justify;
+}
+
+.bg-lightGray{
+  background-color: rgb(204, 202, 202);
+}
+
+.bg-darkGray {
+  background-color: rgb(63, 61, 61);
+}
+
+.wrong-text-case-eg-1 {
+  margin: 10px auto;
+  padding: 1em;
+  font-family: 'Courier New', Courier, monospace !important;
 }
